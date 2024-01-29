@@ -1,15 +1,12 @@
-
-import BoilerBox from '@/components/boilerplate/boilerbox'
+import AuthorImages from '@/components/Authors/AuthorImages/AuthorImages'
 import styles from './page.module.css'
+import ClientComponent from '@/components/dev/clientComponent/clientComponent'
 
 export default async function Page() {
-
   return (
     <main className={styles.page}>
-      
-      <BoilerBox></BoilerBox>
-      {/* Indsæt Client Component her og fjern boilerboxen */}
+      <ClientComponent />
+      <AuthorImages name={'Lena Riis'}></AuthorImages>
     </main>
   )
 }
-
