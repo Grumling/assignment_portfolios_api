@@ -4,26 +4,34 @@ import styles from './GalleriesCollection.module.css'
 import { useEffect, useState } from 'react'
 
 const GalleriesCollection = () => {
-  const [Galleries, setGalleries] = useState([])
+  const [galleries, setGalleries] = useState([])
+  const [currentGallery, setCurrentGallery] = useState()
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(`http://localhost:3000/api/galleries`)
-
       const result = await response.json()
-
       setGalleries(result)
     }
 
     fetchData()
   }, [])
 
+  const handleButtonClickChangeGallery = (galleryName) => {
+    setCurrentGallery(galleryName)
+  }
+
   return (
     <main className={styles.page}>
-      {Galleries.map((gallery, index) => (
-        <button key={index}>{gallery.name}</button>
+      {galleries.map((gallery, index) => (
+        <button
+          key={index}
+          onClick={() => handleButtonClickChangeGallery(gallery.name)}
+        >
+          {gallery.name}
+        </button>
       ))}
-      <GalleryImages gallery={'obscura'}></GalleryImages>
+      <GalleryImages gallery={currentGallery}></GalleryImages>
     </main>
   )
 }
